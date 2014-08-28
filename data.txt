@@ -1,0 +1,486 @@
+23) http://www.orchardmarketing.com.au:
+URLs:
+http://www.facebook.com
+E-mails:
+hello@orchard.com.au, freshthinking@orchardmarketing.com.au
+
+1) http://www.bing.com/search?q=led+tv:
+URLs:
+http://www.w3.org, http://www.samsung.com, http://www.pricerunner.se, http://www.lg.com, http://www.prisjakt.nu, http://www.netonnet.se, http://www.ledtvguiden.com, http://www.siba.se, http://www.microsoft.com
+E-mails:
+
+
+2) http://www.w3.org:
+URLs:
+http://www.webplatform.org, http://www.w3devcampus.com, http://www.semantics.cc, http://www.webvisionsevent.com, http://www.semantic, http://www.graphicalweb.org, http://www.mobile360series.com, http://www.oxygenxml.com, http://www.csail.mit.edu, http://www.ercim.eu, http://www.keio.ac.jp
+E-mails:
+
+
+3) http://www.webplatform.org:
+URLs:
+http://www.youtube.com
+E-mails:
+request@w3.org
+
+24) http://www.twitter.com:
+URLs:
+
+E-mails:
+
+
+4) http://www.youtube.com:
+URLs:
+
+E-mails:
+
+
+5) http://www.w3devcampus.com:
+URLs:
+http://www.linkedin.com, http://www.w3.org, http://www.youtube.com, http://www.ercim.eu
+E-mails:
+training@w3.org
+
+6) http://www.linkedin.com:
+URLs:
+http://www.quantcast.com
+E-mails:
+
+
+25) http://www.sportingpulse.com:
+URLs:
+http://www-static.spulsecdn.net, http://www.foxsportspulse.com, http://www.mcn.com.au, http://www.news.com.au, http://www.foxsports.com.au, http://www.facebook.com, http://www.twitter.com, http://www.youtube.com, http://www.linkedin.com
+E-mails:
+
+
+7) http://www.quantcast.com:
+URLs:
+http://www.w3.org, http://www.facebook.com, http://www.linkedin.com
+E-mails:
+
+
+8) http://www.facebook.com:
+URLs:
+
+E-mails:
+
+
+9) http://www.ercim.eu:
+URLs:
+http://www.w3.org, http://www.ercim.org, http://www.axes, http://www.compose, http://www.i, http://www.lider, http://www.paasage.eu, http://www.smartopendata.eu, http://www.strews.eu
+E-mails:
+
+
+10) http://www.ercim.org:
+URLs:
+http://www.w3.org, http://www.ercim.eu, http://www.axes, http://www.compose, http://www.i, http://www.lider, http://www.paasage.eu, http://www.smartopendata.eu, http://www.strews.eu
+E-mails:
+
+
+11) http://www.paasage.eu:
+URLs:
+http://www.w3.org, http://www.linkedin.com
+E-mails:
+
+
+26) http://www.foxtel.com.au:
+URLs:
+http://www.w3.org, http://www.astra.org.au, http://www.facebook.com, http://www.youtube.com
+E-mails:
+
+
+12) http://www.smartopendata.eu:
+URLs:
+http://www.w3.org, http://www.comsode.eu, http://www.semagrow.eu, http://www.plan4business.eu, http://www.water, http://www.melodiesproject.eu
+E-mails:
+
+
+13) http://www.comsode.eu:
+URLs:
+http://www.linkedin.com, http://www.youropendata.eu, http://www.donau, http://www.w3.org, http://www.unimib.it, http://www.wordpress.org, http://www.antthemes.com
+E-mails:
+
+
+14) http://www.youropendata.eu:
+URLs:
+http://www.salbii.com, http://www.comsode.eu, http://www.linkedin.com
+E-mails:
+
+
+15) http://www.salbii.com:
+URLs:
+http://www.hootsuite.com, http://www.news.com.au, http://www.businessinsider.com.au
+E-mails:
+support@tfingi.com
+
+27) http://www.astra.org.au:
+URLs:
+http://www.w3.org, http://www.linkedin.com
+E-mails:
+jennifer.millington@astra.org.au, admin@astra.org.au, astra@astra.org.au
+
+16) http://www.hootsuite.com:
+URLs:
+http://www.w3.org, http://www.hootlet.com, http://www.linkedin.com
+E-mails:
+icon@2x.74e1d0cb.png
+
+17) http://www.hootlet.com:
+URLs:
+http://www.youtube.com, http://www.linkedin.com
+E-mails:
+
+
+18) http://www.news.com.au:
+URLs:
+http://www.w3.org, http://www.foxsports.com.au, http://www.careerone.com.au, http://www.carsguide.com.au, http://www.realestate.com.au, http://www.facebook.com, http://www.linkedin.com, http://www.heraldsun.com.au, http://www.couriermail.com.au, http://www.adelaidenow.com.au, http://www.perthnow.com.au, http://www.dailytelegraph.com.au, http://www.ntnews.com.au, http://www.themercury.com.au, http://www.taste.com.au, http://www.bodyandsoul.com.au, http://www.homelife.com.au, http://www.expedia.com.au, http://www.moshtix.com.au, http://www.ourdeal.com.au, http://www.eurekareport.com.au, http://www.getprice.com.au, http://www.theaustralian.com.au, http://www.sportingpulse.com.au, http://www.businessspectator.com.au, http://www.townsvillebulletin.com.au, http://www.cairnspost.com.au, http://www.goldcoastbulletin.com.au, http://www.geelongadvertiser.com.au, http://www.weeklytimesnow.com.au, http://www.whereilive.com.au, http://www.traderoo.com.au, http://www.vogue.com.au, http://www.kidspot.com.au, http://www.foxtix.com.au, http://www.shopferret.com.au, http://www.realcommercial.com.au, http://www.wego.com.au, http://www.learningseat.com.au, http://www.stocksinvalue.com.au, http://www.newscorpaustralia.com, http://www.newscorpaustraliaprivacy.com
+E-mails:
+
+
+28) http://www.newscorpaustralia.com:
+URLs:
+http://www.w3.org, http://www.spikes.asia, http://www.newscorpaustraliaprivacy.com, http://www.linkedin.com
+E-mails:
+
+
+29) http://www.spikes.asia:
+URLs:
+http://www.youtube.com, http://www.linkedin.com, http://www.canneslions.com, http://www.eurobest.com, http://www.dubailynx.com, http://www.ame.asia, http://www.lions, http://www.lionsfestivals.com, http://www.topright, http://www.haymarket.com
+E-mails:
+entries@spikes.asia
+
+30) http://www.canneslions.com:
+URLs:
+http://www.youtube.com, http://www.pages04.net, http://www.linkedin.com, http://www.pinterest.com, http://www.canneslionsarchive.com, http://www.eurobest.com, http://www.dubailynx.com, http://www.spikes.asia, http://www.ame.asia, http://www.lions, http://www.lionsfestivals.com, http://www.topright
+E-mails:
+sponsorship@canneslions.com
+
+31) http://www.pages04.net:
+URLs:
+http://www.w3.org
+E-mails:
+
+
+32) http://www.pinterest.com:
+URLs:
+
+E-mails:
+
+
+19) http://www.foxsports.com.au:
+URLs:
+http://www.w3.org, http://www.news.com.au, http://www.foxsportspulse.com, http://www.foxtel.com.au, http://www.newscorpaustralia.com, http://www.theaustralian.com.au, http://www.heraldsun.com.au, http://www.dailytelegraph.com.au, http://www.couriermail.com.au, http://www.adelaidenow.com.au, http://www.perthnow.com.au, http://www.ntnews.com.au, http://www.mcn.com.au, http://www.seek.com.au
+E-mails:
+feedback@foxsports.com.au
+
+33) http://www.canneslionsarchive.com:
+URLs:
+
+E-mails:
+
+
+34) http://www.eurobest.com:
+URLs:
+http://www.linkedin.com, http://www.youtube.com, http://www.pinterest.com, http://www.canneslions.com, http://www.dubailynx.com, http://www.ame.asia, http://www.lions, http://www.lionsfestivals.com, http://www.topright
+E-mails:
+
+
+20) http://www.foxsportspulse.com:
+URLs:
+http://www-static.spulsecdn.net, http://www.mcn.com.au, http://www.news.com.au, http://www.foxsports.com.au, http://www.facebook.com, http://www.twitter.com, http://www.youtube.com, http://www.linkedin.com, http://www.sportingpulse.com
+E-mails:
+
+
+21) http://www-static.spulsecdn.net:
+URLs:
+http://www.foxsportspulse.com, http://www.mcn.com.au, http://www.news.com.au, http://www.foxsports.com.au, http://www.facebook.com, http://www.twitter.com, http://www.youtube.com, http://www.linkedin.com, http://www.sportingpulse.com
+E-mails:
+
+
+35) http://www.dubailynx.com:
+URLs:
+http://www.linkedin.com, http://www.facebook.com, http://www.youtube.com
+E-mails:
+
+
+22) http://www.mcn.com.au:
+URLs:
+http://www.w3.org, http://www.orchardmarketing.com.au, http://www.facebook.com
+E-mails:
+
+
+36) http://www.ame.asia:
+URLs:
+http://www.w3.org, http://www.ames.asia, http://www.youtube.com, http://www.linkedin.com, http://www.dentsuaegisnetwork.com, http://www.loweasiapacific.com, http://www.mediacorp.sg, http://www.ogilvy.com, http://www.campaignasia.com, http://www.acnnewswire.com, http://www.adobomagazine.com, http://www.campaignindia.in, http://www.damndigital.com, http://www.mediavataar.com, http://www.mediabuzz.com.sg
+E-mails:
+
+
+23) http://www.orchardmarketing.com.au:
+URLs:
+http://www.facebook.com
+E-mails:
+hello@orchard.com.au, freshthinking@orchardmarketing.com.au
+
+24) http://www.twitter.com:
+URLs:
+
+E-mails:
+
+
+37) http://www.ames.asia:
+URLs:
+http://www.w3.org, http://www.youtube.com, http://www.linkedin.com, http://www.ame.asia, http://www.dentsuaegisnetwork.com, http://www.loweasiapacific.com, http://www.mediacorp.sg, http://www.ogilvy.com, http://www.campaignasia.com, http://www.acnnewswire.com, http://www.adobomagazine.com, http://www.campaignindia.in, http://www.damndigital.com, http://www.mediavataar.com, http://www.mediabuzz.com.sg
+E-mails:
+
+
+38) http://www.dentsuaegisnetwork.com:
+URLs:
+http://www.carat.co.uk, http://www.iprospect.com, http://www.vizeum.com, http://www.dentsu.com
+E-mails:
+
+
+39) http://www.carat.co.uk:
+URLs:
+http://www.w3.org
+E-mails:
+
+
+25) http://www.sportingpulse.com:
+URLs:
+http://www-static.spulsecdn.net, http://www.foxsportspulse.com, http://www.mcn.com.au, http://www.news.com.au, http://www.foxsports.com.au, http://www.facebook.com, http://www.twitter.com, http://www.youtube.com, http://www.linkedin.com
+E-mails:
+
+
+40) http://www.iprospect.com:
+URLs:
+http://www.w3.org, http://www.linksalpha.com, http://www.apple.com, http://www.viper007bond.com, http://www.iprospect.com.ar, http://www.iprospect.com.au, http://www.iprospect.at, http://www.iprospect.be, http://www.iprospect.com.br, http://www.iprospect.ca, http://www.iprospect.cn, http://www.iprospect.dk, http://www.iprospect.me, http://www.iprospect.fi, http://www.iprospect.fr, http://www.iprospect.de, http://www.iprospect.com.hk, http://www.iprospect.hu, http://www.iprospectcommunicate2.com, http://www.iprospect.ie, http://www.iprospect.it, http://www.iprospect.co.jp, http://www.iprospect.com.my, http://www.iprospect.nl, http://www.iprospect.co.nz, http://www.iprospect.no, http://www.iprospect.pl, http://www.iprospect.com.pt, http://www.iprospect.com.sg, http://www.iprospect.co.za, http://www.iprospect.co.kr, http://www.iprospect.es, http://www.iprospect.se, http://www.iprospect.tw, http://www.iprospect.co.th, http://www.iprospect.com.tr, http://www.iprospect.co.uk, http://www.linkedin.com, http://www.facebook.com, http://www.aegisplc.com
+E-mails:
+
+
+41) http://www.linksalpha.com:
+URLs:
+http://www.w3.org
+E-mails:
+
+
+42) http://www.apple.com:
+URLs:
+http://www.w3.org, http://www.itunes.com
+E-mails:
+
+
+43) http://www.viper007bond.com:
+URLs:
+http://www.youtube.com, http://www.skipswheelwerks.com, http://www.gravatar.com, http://www.finalgear.com
+E-mails:
+
+
+44) http://www.skipswheelwerks.com:
+URLs:
+http://www.4pics1word, http://www.logo, http://www.guesstheemojianswers.co.uk, http://www.100picsquizanswers.org, http://www.closeuppicsanswers.org, http://www.security, http://www.couponsgateway.co, http://www.w3.org
+E-mails:
+
+
+45) http://www.guesstheemojianswers.co.uk:
+URLs:
+
+E-mails:
+
+
+26) http://www.foxtel.com.au:
+URLs:
+http://www.w3.org, http://www.astra.org.au, http://www.facebook.com, http://www.youtube.com
+E-mails:
+
+
+46) http://www.100picsquizanswers.org:
+URLs:
+http://www.facebook.com
+E-mails:
+
+
+47) http://www.closeuppicsanswers.org:
+URLs:
+
+E-mails:
+
+
+48) http://www.couponsgateway.co:
+URLs:
+http://www.w3.org, http://www.quickonlinethemes.com
+E-mails:
+
+
+49) http://www.quickonlinethemes.com:
+URLs:
+
+E-mails:
+
+
+50) http://www.gravatar.com:
+URLs:
+http://www.w3.org, http://www.facebook.com
+E-mails:
+
+
+51) http://www.finalgear.com:
+URLs:
+http://www.w3.org, http://www.viper007bond.com, http://www.redbubble.com, http://www.phyrefile.com, http://www.techzonline.net, http://www.feedburner.com, http://www.packetcollision.com, http://www.sitereport.org, http://www.quantcast.com
+E-mails:
+copyright@fact
+
+52) http://www.redbubble.com:
+URLs:
+http://www.w3.org, http://www.facebook.com
+E-mails:
+nr@context, nr@wrapped, nr@wrapper
+
+27) http://www.astra.org.au:
+URLs:
+http://www.w3.org, http://www.linkedin.com
+E-mails:
+jennifer.millington@astra.org.au, admin@astra.org.au, astra@astra.org.au
+
+28) http://www.newscorpaustralia.com:
+URLs:
+http://www.w3.org, http://www.spikes.asia, http://www.newscorpaustraliaprivacy.com, http://www.linkedin.com
+E-mails:
+
+
+29) http://www.spikes.asia:
+URLs:
+http://www.youtube.com, http://www.linkedin.com, http://www.canneslions.com, http://www.eurobest.com, http://www.dubailynx.com, http://www.ame.asia, http://www.lions, http://www.lionsfestivals.com, http://www.topright, http://www.haymarket.com
+E-mails:
+entries@spikes.asia
+
+30) http://www.canneslions.com:
+URLs:
+http://www.youtube.com, http://www.pages04.net, http://www.linkedin.com, http://www.pinterest.com, http://www.canneslionsarchive.com, http://www.eurobest.com, http://www.dubailynx.com, http://www.spikes.asia, http://www.ame.asia, http://www.lions, http://www.lionsfestivals.com, http://www.topright
+E-mails:
+sponsorship@canneslions.com
+
+31) http://www.pages04.net:
+URLs:
+http://www.w3.org
+E-mails:
+
+
+32) http://www.canneslionsarchive.com:
+URLs:
+
+E-mails:
+
+
+33) http://www.eurobest.com:
+URLs:
+http://www.linkedin.com, http://www.youtube.com, http://www.pinterest.com, http://www.canneslions.com, http://www.dubailynx.com, http://www.ame.asia, http://www.lions, http://www.lionsfestivals.com, http://www.topright
+E-mails:
+
+
+34) http://www.dubailynx.com:
+URLs:
+http://www.linkedin.com, http://www.facebook.com, http://www.youtube.com
+E-mails:
+
+
+35) http://www.ame.asia:
+URLs:
+http://www.w3.org, http://www.ames.asia, http://www.youtube.com, http://www.linkedin.com, http://www.dentsuaegisnetwork.com, http://www.loweasiapacific.com, http://www.mediacorp.sg, http://www.ogilvy.com, http://www.campaignasia.com, http://www.acnnewswire.com, http://www.adobomagazine.com, http://www.campaignindia.in, http://www.damndigital.com, http://www.mediavataar.com, http://www.mediabuzz.com.sg
+E-mails:
+
+
+36) http://www.ames.asia:
+URLs:
+http://www.w3.org, http://www.youtube.com, http://www.linkedin.com, http://www.ame.asia, http://www.dentsuaegisnetwork.com, http://www.loweasiapacific.com, http://www.mediacorp.sg, http://www.ogilvy.com, http://www.campaignasia.com, http://www.acnnewswire.com, http://www.adobomagazine.com, http://www.campaignindia.in, http://www.damndigital.com, http://www.mediavataar.com, http://www.mediabuzz.com.sg
+E-mails:
+
+
+37) http://www.dentsuaegisnetwork.com:
+URLs:
+http://www.carat.co.uk, http://www.iprospect.com, http://www.vizeum.com, http://www.dentsu.com
+E-mails:
+
+
+38) http://www.carat.co.uk:
+URLs:
+http://www.w3.org
+E-mails:
+
+
+39) http://www.iprospect.com:
+URLs:
+http://www.w3.org, http://www.linksalpha.com, http://www.apple.com, http://www.viper007bond.com, http://www.iprospect.com.ar, http://www.iprospect.com.au, http://www.iprospect.at, http://www.iprospect.be, http://www.iprospect.com.br, http://www.iprospect.ca, http://www.iprospect.cn, http://www.iprospect.dk, http://www.iprospect.me, http://www.iprospect.fi, http://www.iprospect.fr, http://www.iprospect.de, http://www.iprospect.com.hk, http://www.iprospect.hu, http://www.iprospectcommunicate2.com, http://www.iprospect.ie, http://www.iprospect.it, http://www.iprospect.co.jp, http://www.iprospect.com.my, http://www.iprospect.nl, http://www.iprospect.co.nz, http://www.iprospect.no, http://www.iprospect.pl, http://www.iprospect.com.pt, http://www.iprospect.com.sg, http://www.iprospect.co.za, http://www.iprospect.co.kr, http://www.iprospect.es, http://www.iprospect.se, http://www.iprospect.tw, http://www.iprospect.co.th, http://www.iprospect.com.tr, http://www.iprospect.co.uk, http://www.linkedin.com, http://www.facebook.com, http://www.aegisplc.com
+E-mails:
+
+
+40) http://www.linksalpha.com:
+URLs:
+http://www.w3.org
+E-mails:
+
+
+41) http://www.apple.com:
+URLs:
+http://www.w3.org, http://www.itunes.com
+E-mails:
+
+
+42) http://www.viper007bond.com:
+URLs:
+http://www.youtube.com, http://www.skipswheelwerks.com, http://www.gravatar.com, http://www.finalgear.com
+E-mails:
+
+
+43) http://www.skipswheelwerks.com:
+URLs:
+http://www.4pics1word, http://www.logo, http://www.guesstheemojianswers.co.uk, http://www.100picsquizanswers.org, http://www.closeuppicsanswers.org, http://www.security, http://www.couponsgateway.co, http://www.w3.org
+E-mails:
+
+
+44) http://www.guesstheemojianswers.co.uk:
+URLs:
+
+E-mails:
+
+
+45) http://www.100picsquizanswers.org:
+URLs:
+http://www.facebook.com
+E-mails:
+
+
+46) http://www.closeuppicsanswers.org:
+URLs:
+
+E-mails:
+
+
+47) http://www.couponsgateway.co:
+URLs:
+http://www.w3.org, http://www.quickonlinethemes.com
+E-mails:
+
+
+48) http://www.quickonlinethemes.com:
+URLs:
+
+E-mails:
+
+
+49) http://www.gravatar.com:
+URLs:
+http://www.w3.org, http://www.facebook.com
+E-mails:
+
+
+50) http://www.finalgear.com:
+URLs:
+http://www.w3.org, http://www.viper007bond.com, http://www.redbubble.com, http://www.phyrefile.com, http://www.techzonline.net, http://www.feedburner.com, http://www.packetcollision.com, http://www.sitereport.org, http://www.quantcast.com
+E-mails:
+copyright@fact
+
+51) http://www.redbubble.com:
+URLs:
+http://www.w3.org, http://www.facebook.com
+E-mails:
+nr@context, nr@wrapped, nr@wrapper
+
