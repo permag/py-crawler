@@ -3,13 +3,10 @@ from db import Database
 import re, urllib2
 import sys
 
-__all__ = ['crawl']
-
 
 class Crawler:
 
     def __init__(self):
-        self._urls = []
         self._emails = []
         self._urls_visited = []
         self._excluded = ['favicon', '.ico', '.css', '.js', '.jpg', 
@@ -34,7 +31,9 @@ class Crawler:
         return self.do_crawl(base_url)
 
 
-    def do_crawl(self, base_url):
+    def do_crawl(self, base_url, level=0):
+        # if level > 7:
+        #     return
         if base_url in self._urls_visited:
             return
         self._urls_visited.append(base_url)
@@ -57,7 +56,7 @@ class Crawler:
         self._emails = self.get_emails(html)
 
         # get urls
-        self._urls = self.get_urls(base_url, html)
+        urls = self.get_urls(base_url, html)
 
         # write to db: url, title, keywords, date
         self.write_to_db(base_url, title, keywords)
@@ -67,12 +66,12 @@ class Crawler:
 
         # print
         if self._output:
-            print '{0}\t{1}\t{2}'.format(self._nr, len(self._urls), len(self._emails))
+            print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), level)
         
 
         # recursion
-        for url in self._urls:
-            self.do_crawl(url)
+        for url in urls:
+            self.do_crawl(url, level + 1)
 
         return True
 
@@ -94,7 +93,7 @@ class Crawler:
             if not url in urls_unique and url != base_url and not any(word in url for word in self._excluded):
                 if url[:7] == 'http://' or url[:8] == 'https://' or url[:3] == 'www':
                     urls_unique.append(url)
-                elif len(url) > 100:
+                elif len(url) > 200:
                     continue
                 elif url[:3] == '../':
                     url = url[3:]
