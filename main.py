@@ -11,6 +11,7 @@ def main():
     """
     url = ''
     nr = 0
+    nr_total = 0
     crawler = Crawler()
     while True:
         url = raw_input('Enter url to crawl [0 to exit]: ')
@@ -18,8 +19,12 @@ def main():
             print 'Exiting...'
             return False
         else:
-            nr = crawler.crawl(url, output=True)
-            print '\nA total of %s sites crawled.\n' % str(nr)
+            if crawler.crawl(url, output=True):
+                nr_total += crawler.nr
+                print '\n%d sites crawled.' % crawler.nr
+                print 'A total of %d sites have been crawled.\n' % nr_total
+            else:
+                print 'Already crawled or uncrawable. Try again. \n'
 
 
 

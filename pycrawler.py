@@ -10,19 +10,31 @@ class Crawler:
 
     def __init__(self):
         self._urls = []
+        self._emails = []
         self._urls_visited = []
         self._excluded = ['favicon', '.ico', '.css', '.js', '.jpg', 
-                         '.jpeg', '.png', '.gif', '#', '?']
-        self._nr = 1
+                         '.jpeg', '.png', '.gif', '#', '?', '.pdf',
+                         '.doc']
+        self._nr = 0
         self._output = False
         self._filename = 'data.txt'
 
 
+    @property
+    def nr(self):
+        return self._nr
+
+
     def crawl(self, base_url, filename=None, **kwargs):
+        base_url = base_url.strip()
+        self._nr = 0
         if kwargs:
             if kwargs['output'] is True:
                 self._output = True
+        return self.do_crawl(base_url)
 
+
+    def do_crawl(self, base_url):
         if base_url in self._urls_visited:
             return
         self._urls_visited.append(base_url)
@@ -32,6 +44,9 @@ class Crawler:
         if not html:
             return
         
+        # count
+        self._nr += 1
+        
         # get page title
         title = self.get_page_title(html)
 
@@ -39,27 +54,27 @@ class Crawler:
         keywords = self.get_meta_keywords(html)
 
         # get emails
-        ### emails = self.get_emails(html)
+        self._emails = self.get_emails(html)
 
         # get urls
         self._urls = self.get_urls(base_url, html)
 
-        # write to db
+        # write to db: url, title, keywords, date
         self.write_to_db(base_url, title, keywords)
+
+        # write to file: url, emails
+        self.write_to_file(base_url)
 
         # print
         if self._output:
-            emails = []
-            print '{0}\t{1}\t{2}'.format(self._nr, len(self._urls), len(emails))
+            print '{0}\t{1}\t{2}'.format(self._nr, len(self._urls), len(self._emails))
         
-        # count
-        self._nr += 1
 
         # recursion
         for url in self._urls:
-            self.crawl(url)
+            self.do_crawl(url)
 
-        return self._nr - 1
+        return True
 
 
     @timeout(1)
@@ -127,10 +142,12 @@ class Crawler:
 
 
     def write_to_file(self, base_url):
+        if not len(self._emails):
+            return
         with open(self._filename, 'a') as textfile:
             output = '{0}) {1}:\n'.format(self._nr, base_url)
-            output += 'URLs: (%d)\n' % len(self._urls)
-            output += ', '.join(self._urls)
+            # output += 'URLs: (%d)\n' % len(self._urls)
+            # output += ', '.join(self._urls)
             output += '\nE-mails: (%d)\n' % len(self._emails)
             output += ', '.join(self._emails) + '\n\n'
             textfile.write(output)
