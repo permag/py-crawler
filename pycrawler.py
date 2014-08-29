@@ -59,6 +59,8 @@ class Crawler:
         for url in self._urls:
             self.crawl(url)
 
+        return self._nr - 1
+
 
     @timeout(1)
     def get_html(self, base_url):

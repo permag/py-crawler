@@ -1,24 +1,27 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-from pycrawler import crawl
+from pycrawler import Crawler
 import sys
 
 
 def main():
-	"""
-	Example usages
-	"""
-	url = ''
-	if not len(sys.argv) > 1:
-		print 'Use URL as argument.'
-		sys.exit(0)
-	url = sys.argv[1]
-	crawl(url, output=True)
+    """
+    Example usages
+    """
+    url = ''
+    nr = 0
+    crawler = Crawler()
+    while True:
+        url = raw_input('Enter url to crawl [0 to exit]: ')
+        if url == '0':
+            print 'Exiting...'
+            return False
+        else:
+            nr = crawler.crawl(url, output=True)
+            print '\nA total of %s sites crawled.\n' % str(nr)
 
-	with open('data.txt') as textfile:
-		print '\n\n\n' + textfile.read(),
 
 
 if __name__ == '__main__':
-	main()
+    main()
