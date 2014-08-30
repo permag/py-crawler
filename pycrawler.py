@@ -1,7 +1,7 @@
-from timeout import timeout
+from timeout import Timeout
 from db import Database
 import re, urllib2
-import sys
+import sys, os
 
 
 class Crawler:
@@ -22,12 +22,16 @@ class Crawler:
         return self._nr
 
 
-    def crawl(self, base_url, filename=None, **kwargs):
+    def crawl(self, base_url, filename=None, output=None):
         base_url = base_url.strip()
+        if base_url[:7] == 'http://' or base_url[:8] == 'https://':
+            pass
+        else:
+            base_url = 'http://{}'.format(base_url)
+
         self._nr = 0
-        if kwargs:
-            if kwargs['output'] is True:
-                self._output = True
+        if output:
+            self._output = True
         return self.do_crawl(base_url)
 
 
@@ -76,12 +80,13 @@ class Crawler:
         return True
 
 
-    @timeout(1)
     def get_html(self, base_url):
-        data = None
+        html = None
         try:
-            data = urllib2.urlopen(base_url)
-            return data.read()
+            with Timeout(seconds=1):
+                req = urllib2.Request(base_url, headers={'User-Agent': 'Mozilla/5.0'})
+                html = urllib2.urlopen(req).read()
+                return html
         except:
             return False
 

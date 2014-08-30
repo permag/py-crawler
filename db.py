@@ -9,7 +9,7 @@ class Database:
     def db_conn(self):
         conn = None
         try:
-            conn = lite.connect('data2.db')
+            conn = lite.connect('data.db')
             cur = conn.cursor()
             cur.execute('''CREATE TABLE IF NOT EXISTS url(
                             id INTEGER PRIMARY KEY,
