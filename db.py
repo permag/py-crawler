@@ -1,10 +1,10 @@
 import sqlite3 as lite
 
 class Database:
-    
+
     def __init__(self):
         self._conn = None
-    
+
 
     def db_conn(self):
         conn = None
@@ -24,7 +24,7 @@ class Database:
         self._conn = conn
         return self._conn
 
-        
+
     def insert(self, sql, params):
         cur = self._conn.cursor()
         cur.execute(sql, params)

@@ -61,28 +61,15 @@ class Crawler:
             # count
             self._nr += 1
             
-            # get page title
-            title = self.get_page_title(html)
-
-            # get meta keywords
-            keywords = self.get_meta_keywords(html)
-
-            # get emails
-            self._emails = self.get_emails(html)
+            # collect and write data
+            self.collect_and_write(base_url, html)
 
             # get urls
             urls = self.get_urls(base_url, html)
 
-            # write to db: url, title, keywords, date
-            self.write_to_db(base_url, title, keywords)
-
-            # write to file: url, emails
-            self.write_to_file(base_url)
-
             # print
             if self._output:
                 print '{0}\t{1}\t{2}'.format(self._nr, len(urls), len(self._emails))
-            
 
             # enqueue list of urls into queue
             self._urls_queue += urls
@@ -101,38 +88,38 @@ class Crawler:
         html = self.get_html(base_url)
         if not html:
             return
-        
+
         # count
         self._nr += 1
-        
-        # get page title
-        title = self.get_page_title(html)
 
-        # get meta keywords
-        keywords = self.get_meta_keywords(html)
-
-        # get emails
-        self._emails = self.get_emails(html)
+        # collect and write data
+        self.collect_and_write(base_url, html)
 
         # get urls
         urls = self.get_urls(base_url, html)
 
-        # write to db: url, title, keywords, date
-        self.write_to_db(base_url, title, keywords)
-
-        # write to file: url, emails
-        self.write_to_file(base_url)
-
         # print
         if self._output:
             print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), level)
-        
 
         # recursion
         for url in urls:
             self.do_crawl_dfs(url, level + 1)
 
         return True
+
+
+    def collect_and_write(self, base_url, html):
+        # get page title
+        title = self.get_page_title(html)
+        # get meta keywords
+        keywords = self.get_meta_keywords(html)
+        # get emails
+        self._emails = self.get_emails(html)
+        # write to db: url, title, keywords, date
+        self.write_to_db(base_url, title, keywords)
+        # write to file: url, emails
+        self.write_to_file(base_url)
 
 
     def get_html(self, base_url):
@@ -165,7 +152,7 @@ class Crawler:
                     urls_unique.append('{0}{1}'.format(base_url, url))
         return urls_unique
 
-        
+
     def get_page_title(self, html):
         match = re.search(r'<title[^>]*>(.*?)</title>', html)
         try:
