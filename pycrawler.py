@@ -1,12 +1,14 @@
 from timeout import Timeout
 from db import Database
 import re, urllib2
+import collections
 import sys, os
 
 
 class Crawler:
 
     def __init__(self):
+        self._urls_queue = collections.deque()
         self._emails = []
         self._urls_visited = []
         self._excluded = ['favicon', '.ico', '.css', '.js', '.jpg', 
@@ -14,7 +16,7 @@ class Crawler:
                          '.doc']
         self._nr = 0
         self._output = False
-        self._filename = 'data.txt'
+        self._filename = 'emails.txt'
 
 
     @property
@@ -22,7 +24,7 @@ class Crawler:
         return self._nr
 
 
-    def crawl(self, base_url, filename=None, output=None):
+    def crawl(self, base_url, filename=None, output=False, search='bfs'):
         base_url = base_url.strip()
         if base_url[:7] == 'http://' or base_url[:8] == 'https://':
             pass
@@ -32,10 +34,63 @@ class Crawler:
         self._nr = 0
         if output:
             self._output = True
-        return self.do_crawl(base_url)
+
+        if search.lower() == 'bfs':
+            return self.do_crawl_bfs(base_url)
+        elif search.lower() == 'dfs':
+            return self.do_crawl_dfs(base_url)
 
 
-    def do_crawl(self, base_url, level=0):
+    def do_crawl_bfs(self, base_url):
+        # enqueue first url
+        self._urls_queue.append(base_url)
+
+        while len(self._urls_queue):
+            # dequeue url
+            base_url = self._urls_queue.popleft()
+
+            if base_url in self._urls_visited:
+                continue
+            self._urls_visited.append(base_url)
+
+            # get html
+            html = self.get_html(base_url)
+            if not html:
+                continue
+            
+            # count
+            self._nr += 1
+            
+            # get page title
+            title = self.get_page_title(html)
+
+            # get meta keywords
+            keywords = self.get_meta_keywords(html)
+
+            # get emails
+            self._emails = self.get_emails(html)
+
+            # get urls
+            urls = self.get_urls(base_url, html)
+
+            # write to db: url, title, keywords, date
+            self.write_to_db(base_url, title, keywords)
+
+            # write to file: url, emails
+            self.write_to_file(base_url)
+
+            # print
+            if self._output:
+                print '{0}\t{1}\t{2}'.format(self._nr, len(urls), len(self._emails))
+            
+
+            # enqueue list of urls into queue
+            self._urls_queue += urls
+
+        return True
+
+
+    def do_crawl_dfs(self, base_url, level=0):
         # if level > 7:
         #     return
         if base_url in self._urls_visited:
@@ -75,7 +130,7 @@ class Crawler:
 
         # recursion
         for url in urls:
-            self.do_crawl(url, level + 1)
+            self.do_crawl_dfs(url, level + 1)
 
         return True
 

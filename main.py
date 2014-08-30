@@ -19,7 +19,7 @@ def main():
             print 'Exiting...'
             return False
         else:
-            if crawler.crawl(url, output=True):
+            if crawler.crawl(url, output=True, search='bfs'):
                 nr_total += crawler.nr
                 print '\n%d sites crawled.' % crawler.nr
                 print 'A total of %d sites have been crawled.\n' % nr_total
