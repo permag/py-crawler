@@ -1,5 +1,6 @@
 from timeout import Timeout
 from db import Database
+from bs4 import BeautifulSoup
 import re, urllib2
 import collections
 import sys, os
@@ -8,15 +9,18 @@ import sys, os
 class Crawler:
 
     def __init__(self):
-        self._urls_queue = collections.deque()
         self._emails = []
-        self._urls_visited = []
-        self._excluded = ['favicon', '.ico', '.css', '.js', '.jpg', 
-                         '.jpeg', '.png', '.gif', '#', '?', '.pdf',
-                         '.doc']
+        self._urls_visited = {}
+        self._excluded = ['mailto:', 'favicon', '.ico', '.css', '.js', 
+                          '.jpg', '.jpeg', '.png', '.gif', '#', '?', 
+                          '.pdf', '.doc']
         self._nr = 0
         self._output = False
         self._filename = 'emails.txt'
+
+        # DB
+        self._db = Database()
+        self._db.db_conn()
 
 
     @property
@@ -25,13 +29,15 @@ class Crawler:
 
 
     def crawl(self, base_url, filename=None, output=False, search='bfs'):
+        # reset
+        self._nr = 0
+        # strip url
         base_url = base_url.strip()
         if base_url[:7] == 'http://' or base_url[:8] == 'https://':
             pass
         else:
             base_url = 'http://{}'.format(base_url)
 
-        self._nr = 0
         if output:
             self._output = True
 
@@ -42,47 +48,55 @@ class Crawler:
 
 
     def do_crawl_bfs(self, base_url):
-        # enqueue first url
-        self._urls_queue.append(base_url)
+        # new queue
+        urls_queue = collections.deque()
+        # depth
+        depth = 0
+        # enqueue and visit first url
+        self._urls_visited[base_url] = 1
+        urls_queue.append(base_url)
 
-        while len(self._urls_queue):
+        while len(urls_queue):
             # dequeue url
-            base_url = self._urls_queue.popleft()
-
-            if base_url in self._urls_visited:
-                continue
-            self._urls_visited.append(base_url)
+            base_url = urls_queue.popleft()
+            # check if goto next depth
+            if base_url == 'new_depth':
+                base_url = urls_queue.popleft()
+                depth += 1
 
             # get html
             html = self.get_html(base_url)
             if not html:
                 continue
-            
+
             # count
             self._nr += 1
-            
             # collect and write data
             self.collect_and_write(base_url, html)
-
             # get urls
             urls = self.get_urls(base_url, html)
 
             # print
             if self._output:
-                print '{0}\t{1}\t{2}'.format(self._nr, len(urls), len(self._emails))
+                print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), depth)
 
-            # enqueue list of urls into queue
-            self._urls_queue += urls
+            # enqueue and visit urls
+            urls_queue.append('new_depth')
+            for url in urls:
+                if url not in self._urls_visited:
+                    self._urls_visited[url] = 1
+                    urls_queue.append(url)
 
         return True
 
 
-    def do_crawl_dfs(self, base_url, level=0):
-        # if level > 7:
+    def do_crawl_dfs(self, base_url, depth=0):
+        # if depth > 7:
         #     return
         if base_url in self._urls_visited:
             return
-        self._urls_visited.append(base_url)
+        # self._urls_visited.append(base_url)
+        self._urls_visited[base_url] = 1
 
         # get html
         html = self.get_html(base_url)
@@ -91,20 +105,18 @@ class Crawler:
 
         # count
         self._nr += 1
-
         # collect and write data
         self.collect_and_write(base_url, html)
-
         # get urls
         urls = self.get_urls(base_url, html)
 
         # print
         if self._output:
-            print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), level)
+            print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), depth)
 
         # recursion
         for url in urls:
-            self.do_crawl_dfs(url, level + 1)
+            self.do_crawl_dfs(url, depth + 1)
 
         return True
 
@@ -123,25 +135,27 @@ class Crawler:
 
 
     def get_html(self, base_url):
-        html = None
+        html_content = None
         try:
             with Timeout(seconds=1):
                 req = urllib2.Request(base_url, headers={'User-Agent': 'Mozilla/5.0'})
-                html = urllib2.urlopen(req).read()
-                return html
+                html_content = urllib2.urlopen(req).read()
+                html = collections.namedtuple('HTML', ['html', 'soup'])
+                return html(html_content, BeautifulSoup(html_content, 'lxml'))
         except:
             return False
 
 
     def get_urls(self, base_url, html):
-        urls = re.findall(r'href="[\'"]?([^\'" >]+)', html)
+        # urls = re.findall(r'href="[\'"]?([^\'" >]+)', html)
+        urls = [a.get('href') for a in html.soup.find_all('a') if a.get('href') and not any(word in a.get('href') for word in self._excluded)]  # html is soup
         urls_unique = []
         for url in urls:
-            if not url in urls_unique and url != base_url and not any(word in url for word in self._excluded):
+            if url is None or len(url) > 200 or len(url) < 1:
+                continue
+            if not url in urls_unique and url != base_url and not any(word in url for word in self._excluded):  # remove any() here.
                 if url[:7] == 'http://' or url[:8] == 'https://' or url[:3] == 'www':
                     urls_unique.append(url)
-                elif len(url) > 200:
-                    continue
                 elif url[:3] == '../':
                     url = url[3:]
                 elif url[:2] == './':
@@ -154,24 +168,29 @@ class Crawler:
 
 
     def get_page_title(self, html):
-        match = re.search(r'<title[^>]*>(.*?)</title>', html)
+        # match = re.search(r'<title[^>]*>(.*?)</title>', html)
         try:
-            title = match.group(1)
-            return title.decode('utf-8')
+            title = html.soup.title.string   
+            # title = match.group(1)
+            # return unicode(title)
+            return title
         except:
             return False
 
 
     def get_meta_keywords(self, html):
         try:
-            match = re.search('<meta\sname=["\']keywords["\']\scontent=["\'](.*?)["\']\s/>', html)
-            return match.group(1).decode('utf-8')
+            # match = re.search('<meta\sname=["\']keywords["\']\scontent=["\'](.*?)["\']\s/>', html)
+            # return match.group(1).decode('utf-8')
+            # return unicode(match.group(1))
+            keywords = html.soup.meta.get('keywords')
+            return keywords
         except:
             return False
 
 
     def get_emails(self, html):
-        emails = re.findall(r'[\w.]+@[\w.]+', html)
+        emails = re.findall(r'[\w.]+@[\w.]+', html.html)
         emails_unique = []
         for email in emails:
             if not email in emails_unique:
@@ -180,9 +199,10 @@ class Crawler:
 
 
     def write_to_db(self, base_url, title, keywords):
-        db = Database()
-        db.db_conn()
-        db.insert("""INSERT INTO url (url, title, keywords)
+        if not self._db:
+            self._db = Database()
+            self._db.db_conn()
+        self._db.insert("""INSERT INTO url (url, title, keywords)
                      VALUES (?, ?, ?)""", 
                      (base_url, title, keywords))
 

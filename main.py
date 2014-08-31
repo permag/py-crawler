@@ -14,12 +14,20 @@ def main():
     nr_total = 0
     crawler = Crawler()
     while True:
+        search = raw_input('1) BFS\n2) DFS\nSelect search type [1 - 2]: ')
+        if search == '1': 
+            search = 'BFS' 
+        elif search == '2': 
+            search = 'DFS' 
+        else: 
+            continue
         url = raw_input('Enter url to crawl [0 to exit]: ')
-        if url == '0':
+        if search == '0' or url == '0':
             print 'Exiting...'
             return False
         else:
-            if crawler.crawl(url, output=True, search='bfs'):
+            print 'Search: {}'.format(search)
+            if crawler.crawl(url, output=True, search=search):
                 nr_total += crawler.nr
                 print '\n%d sites crawled.' % crawler.nr
                 print 'A total of %d sites have been crawled.\n' % nr_total
