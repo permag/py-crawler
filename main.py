@@ -2,7 +2,6 @@
 #-*- coding: utf-8 -*-
 
 from pycrawler import Crawler
-import sys
 
 
 def main():

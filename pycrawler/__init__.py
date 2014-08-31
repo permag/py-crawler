@@ -1,1 +1,1 @@
-from pycrawler import *
+from crawler import *
