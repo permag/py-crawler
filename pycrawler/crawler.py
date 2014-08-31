@@ -35,22 +35,25 @@ class Crawler:
         # reset
         self._nr = 0
         self._max_depth = max_depth
+        self._output = output
 
         # db conn
         self._db.db_conn()
+
         # strip url
         base_url = base_url.strip()
+
+        # add http if missing
         if base_url[:7] == 'http://' or base_url[:8] == 'https://':
             pass
         else:
             base_url = 'http://{}'.format(base_url)
         
+        # dont crawl same init url twice
         if base_url in self._urls_visited:
             return
 
-        if output:
-            self._output = True
-
+        # BFS or DFS
         if search.lower() == 'bfs':
             return self._do_crawl_bfs(base_url)
         elif search.lower() == 'dfs':
