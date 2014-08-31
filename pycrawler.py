@@ -8,6 +8,8 @@ import sys, os
 
 class Crawler:
 
+    _MAX_DEPTH = 50
+
     def __init__(self):
         self._emails = []
         self._urls_visited = {}
@@ -17,6 +19,7 @@ class Crawler:
         self._nr = 0
         self._output = False
         self._filename = 'emails.txt'
+        self._max_depth = 0
 
         # DB
         self._db = Database()
@@ -27,28 +30,37 @@ class Crawler:
         return self._nr
 
 
-    def crawl(self, base_url, filename=None, output=False, search='bfs'):
-        # db conn
-        self._db.db_conn()
+    def crawl(self, base_url, filename=None, output=False, search='bfs', max_depth=None):
         # reset
         self._nr = 0
+        self._max_depth = 0
+        if not max_depth:
+            self._max_depth = _MAX_DEPTH
+        else:
+            self._max_depth = max_depth
+
+        # db conn
+        self._db.db_conn()
         # strip url
         base_url = base_url.strip()
         if base_url[:7] == 'http://' or base_url[:8] == 'https://':
             pass
         else:
             base_url = 'http://{}'.format(base_url)
+        
+        if base_url in self._urls_visited:
+            return
 
         if output:
             self._output = True
 
         if search.lower() == 'bfs':
-            return self.do_crawl_bfs(base_url)
+            return self._do_crawl_bfs(base_url)
         elif search.lower() == 'dfs':
-            return self.do_crawl_dfs(base_url)
+            return self._do_crawl_dfs(base_url)
 
 
-    def do_crawl_bfs(self, base_url):
+    def _do_crawl_bfs(self, base_url):
         # new queue
         urls_queue = collections.deque()
         # depth
@@ -58,6 +70,8 @@ class Crawler:
         urls_queue.append(base_url)
 
         while len(urls_queue):
+            if depth >= self._max_depth:
+                return True
             # dequeue url
             base_url = urls_queue.popleft()
             # check if goto next depth
@@ -66,16 +80,16 @@ class Crawler:
                 depth += 1
 
             # get html
-            html = self.get_html(base_url)
+            html = self._get_html(base_url)
             if not html:
                 continue
 
             # count
             self._nr += 1
             # collect and write data
-            self.collect_and_write(base_url, html)
+            self._collect_and_write(base_url, html)
             # get urls
-            urls = self.get_urls(base_url, html)
+            urls = self._get_urls(base_url, html)
 
             # print
             if self._output:
@@ -91,24 +105,24 @@ class Crawler:
         return True
 
 
-    def do_crawl_dfs(self, base_url, depth=0):
-        # if depth > 70:
-        #     return
+    def _do_crawl_dfs(self, base_url, depth=0):
+        if depth > self._max_depth:
+            return
         if base_url in self._urls_visited:
             return
         self._urls_visited[base_url] = 1
 
         # get html
-        html = self.get_html(base_url)
+        html = self._get_html(base_url)
         if not html:
             return
 
         # count
         self._nr += 1
         # collect and write data
-        self.collect_and_write(base_url, html)
+        self._collect_and_write(base_url, html)
         # get urls
-        urls = self.get_urls(base_url, html)
+        urls = self._get_urls(base_url, html)
 
         # print
         if self._output:
@@ -116,25 +130,25 @@ class Crawler:
 
         # recursion
         for url in urls:
-            self.do_crawl_dfs(url, depth + 1)
+            self._do_crawl_dfs(url, depth + 1)
 
         return True
 
 
-    def collect_and_write(self, base_url, html):
+    def _collect_and_write(self, base_url, html):
         # get page title
-        title = self.get_page_title(html)
+        title = self._get_page_title(html)
         # get meta keywords
-        keywords = self.get_meta_keywords(html)
+        keywords = self._get_meta_keywords(html)
         # get emails
-        self._emails = self.get_emails(html)
+        self._emails = self._get_emails(html)
         # write to db: url, title, keywords, date
-        self.write_to_db(base_url, title, keywords)
+        self._write_to_db(base_url, title, keywords)
         # write to file: url, emails
-        self.write_to_file(base_url)
+        self._write_to_file(base_url)
 
 
-    def get_html(self, base_url):
+    def _get_html(self, base_url):
         html_content = None
         try:
             with Timeout(seconds=1):
@@ -146,7 +160,7 @@ class Crawler:
             return False
 
 
-    def get_urls(self, base_url, html):
+    def _get_urls(self, base_url, html):
         # urls = re.findall(r'href="[\'"]?([^\'" >]+)', html)
         # urls = [a.get('href') for a in html.soup.find_all('a') if a.get('href') and not any(word in a.get('href') for word in self._excluded)]
         urls_unique = []
@@ -166,7 +180,7 @@ class Crawler:
         return urls_unique
 
 
-    def get_page_title(self, html):
+    def _get_page_title(self, html):
         # match = re.search(r'<title[^>]*>(.*?)</title>', html)
         try:
             title = html.soup.title.string   
@@ -177,18 +191,15 @@ class Crawler:
             return False
 
 
-    def get_meta_keywords(self, html):
+    def _get_meta_keywords(self, html):
         try:
-            # match = re.search('<meta\sname=["\']keywords["\']\scontent=["\'](.*?)["\']\s/>', html)
-            # return match.group(1).decode('utf-8')
-            # return unicode(match.group(1))
-            keywords = html.soup.meta.get('keywords')
-            return keywords
+            match = re.search('<meta\sname=["\']keywords["\']\scontent=["\'](.*?)["\']\s/>', html.html)
+            return unicode(match.group(1))
         except:
             return False
 
 
-    def get_emails(self, html):
+    def _get_emails(self, html):
         emails = re.findall(r'[\w.]+@[\w.]+', html.html)
         emails_unique = []
         for email in emails:
@@ -197,16 +208,13 @@ class Crawler:
         return emails_unique
 
 
-    def write_to_db(self, base_url, title, keywords):
-        if not self._db:
-            self._db = Database()
-            self._db.db_conn()
+    def _write_to_db(self, base_url, title, keywords):
         self._db.insert("""INSERT INTO url (url, title, keywords)
                      VALUES (?, ?, ?)""", 
                      (base_url, title, keywords))
 
 
-    def write_to_file(self, base_url):
+    def _write_to_file(self, base_url):
         if not len(self._emails):
             return
         with open(self._filename, 'a') as textfile:
