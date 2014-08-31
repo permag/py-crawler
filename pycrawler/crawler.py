@@ -70,7 +70,7 @@ class Crawler:
         urls_queue.append(base_url)
 
         while len(urls_queue):
-            if depth >= self._max_depth:
+            if depth > self._max_depth:
                 return True
             # dequeue url
             base_url = urls_queue.popleft()
