@@ -8,7 +8,8 @@ import sys, os
 
 class Crawler:
 
-    _MAX_DEPTH = 50
+    DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+
 
     def __init__(self):
         self._emails = []
@@ -18,7 +19,7 @@ class Crawler:
                           '.pdf', '.doc']
         self._nr = 0
         self._output = False
-        self._filename = 'emails.txt'
+        self._filename = '{0}/../data/emails.txt'.format(self.DIR_PATH)
         self._max_depth = 0
 
         # DB
@@ -30,14 +31,10 @@ class Crawler:
         return self._nr
 
 
-    def crawl(self, base_url, filename=None, output=False, search='bfs', max_depth=None):
+    def crawl(self, base_url, filename=None, output=False, search='bfs', max_depth=50):
         # reset
         self._nr = 0
-        self._max_depth = 0
-        if not max_depth:
-            self._max_depth = _MAX_DEPTH
-        else:
-            self._max_depth = max_depth
+        self._max_depth = max_depth
 
         # db conn
         self._db.db_conn()
@@ -93,7 +90,7 @@ class Crawler:
 
             # print
             if self._output:
-                print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), depth)
+                self._print_output(self._nr, len(urls), len(self._emails), depth)
 
             # enqueue and visit urls
             urls_queue.append('new_depth')
@@ -126,7 +123,7 @@ class Crawler:
 
         # print
         if self._output:
-            print '{0}\t{1}\t{2}\t{3}'.format(self._nr, len(urls), len(self._emails), depth)
+            self._print_output(self._nr, len(urls), len(self._emails), depth)
 
         # recursion
         for url in urls:
@@ -140,10 +137,10 @@ class Crawler:
         title = self._get_page_title(html)
         # get meta keywords
         keywords = self._get_meta_keywords(html)
-        # get emails
-        self._emails = self._get_emails(html)
         # write to db: url, title, keywords, date
         self._write_to_db(base_url, title, keywords)
+        # get emails
+        self._emails = self._get_emails(html)
         # write to file: url, emails
         self._write_to_file(base_url)
 
@@ -209,9 +206,9 @@ class Crawler:
 
 
     def _write_to_db(self, base_url, title, keywords):
-        self._db.insert("""INSERT INTO url (url, title, keywords)
-                     VALUES (?, ?, ?)""", 
-                     (base_url, title, keywords))
+        self._db.execute("""INSERT INTO url (url, title, keywords)
+                            VALUES (?, ?, ?)""", 
+                        (base_url, title, keywords))
 
 
     def _write_to_file(self, base_url):
@@ -226,14 +223,15 @@ class Crawler:
             textfile.write(output)
 
 
+    def _print_output(self, nr, urls_len, emails_len, depth):
+            print '{0}\t{1}\t{2}\t{3}'.format(nr, urls_len, emails_len, depth)
+
+
     def main(self):
-        if len(sys.argv) > 2:
-            url = sys.argv[1]
-            self._filename = sys.argv[2]
-        elif len(sys.argv) > 1:
+        if len(sys.argv) > 1:
             url = sys.argv[1]
         else:
-            print 'Use URL and textfile as argument: python pycrawler.py http://www.domain.com filename.txt'
+            print 'Use URL as argument: python pycrawler.py http://www.domain.com'
             sys.exit(0)
         print 'Nr.\tURLs\tE-mails\tDepth'
         self.crawl(url, self._filename, output=True)

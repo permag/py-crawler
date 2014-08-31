@@ -1,6 +1,12 @@
 import sqlite3 as lite
+import os, sys
+
 
 class Database:
+
+    DIR_PATH = os.path.dirname(os.path.abspath(__file__))
+    DATABASE = '../data/data.db'
+
 
     def __init__(self):
         self._conn = None
@@ -9,7 +15,7 @@ class Database:
     def db_conn(self):
         conn = None
         try:
-            conn = lite.connect('data.db')
+            conn = lite.connect('{0}/{1}'.format(self.DIR_PATH, self.DATABASE))
             cur = conn.cursor()
             cur.execute('''CREATE TABLE IF NOT EXISTS url(
                             id INTEGER PRIMARY KEY,
@@ -25,7 +31,7 @@ class Database:
         return self._conn
 
 
-    def insert(self, sql, params):
+    def execute(self, sql, params):
         cur = self._conn.cursor()
         cur.execute(sql, params)
         self._conn.commit()
