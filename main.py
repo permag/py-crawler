@@ -27,6 +27,7 @@ def main():
             return False
         else:
             print 'Search: {}'.format(search)
+            print 'Nr.\tURLs\tE-mails\tDepth'
             if crawler.crawl(url, output=True, search=search):
                 nr_total += crawler.nr
                 print '\n%d sites crawled.' % crawler.nr

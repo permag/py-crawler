@@ -20,7 +20,6 @@ class Crawler:
 
         # DB
         self._db = Database()
-        self._db.db_conn()
 
 
     @property
@@ -29,6 +28,8 @@ class Crawler:
 
 
     def crawl(self, base_url, filename=None, output=False, search='bfs'):
+        # db conn
+        self._db.db_conn()
         # reset
         self._nr = 0
         # strip url
@@ -91,11 +92,10 @@ class Crawler:
 
 
     def do_crawl_dfs(self, base_url, depth=0):
-        # if depth > 7:
+        # if depth > 70:
         #     return
         if base_url in self._urls_visited:
             return
-        # self._urls_visited.append(base_url)
         self._urls_visited[base_url] = 1
 
         # get html
@@ -148,12 +148,11 @@ class Crawler:
 
     def get_urls(self, base_url, html):
         # urls = re.findall(r'href="[\'"]?([^\'" >]+)', html)
-        urls = [a.get('href') for a in html.soup.find_all('a') if a.get('href') and not any(word in a.get('href') for word in self._excluded)]  # html is soup
+        # urls = [a.get('href') for a in html.soup.find_all('a') if a.get('href') and not any(word in a.get('href') for word in self._excluded)]
         urls_unique = []
-        for url in urls:
-            if url is None or len(url) > 200 or len(url) < 1:
-                continue
-            if not url in urls_unique and url != base_url and not any(word in url for word in self._excluded):  # remove any() here.
+        for url in html.soup.find_all('a'):
+            url = url.get('href')
+            if url and url not in urls_unique and url != base_url and not any(word in url for word in self._excluded):
                 if url[:7] == 'http://' or url[:8] == 'https://' or url[:3] == 'www':
                     urls_unique.append(url)
                 elif url[:3] == '../':
@@ -228,7 +227,7 @@ class Crawler:
         else:
             print 'Use URL and textfile as argument: python pycrawler.py http://www.domain.com filename.txt'
             sys.exit(0)
-        print 'Nr.\tURLs\tE-mails'
+        print 'Nr.\tURLs\tE-mails\tDepth'
         self.crawl(url, self._filename, output=True)
 
 
