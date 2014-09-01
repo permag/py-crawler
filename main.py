@@ -22,7 +22,7 @@ def main():
         else: 
             continue
         try:
-            max_depth = int(raw_input('Max depth [e.g 9]: '))
+            max_depth = int(raw_input('Max depth [e.g. 9]: '))
         except:
             continue
 
