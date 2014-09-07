@@ -15,11 +15,11 @@ def main():
     crawler = Crawler()
     while True:
         search = raw_input('1) BFS\n2) DFS\nSelect search type [1 - 2]: ')
-        if search == '1': 
-            search = 'BFS' 
-        elif search == '2': 
-            search = 'DFS' 
-        else: 
+        if search == '1':
+            search = 'BFS'
+        elif search == '2':
+            search = 'DFS'
+        else:
             continue
         try:
             max_depth = int(raw_input('Max depth [e.g. 9]: '))
@@ -39,7 +39,6 @@ def main():
                 print 'A total of %d sites have been crawled.\n' % nr_total
             else:
                 print 'Already crawled or uncrawable. Try again. \n'
-
 
 
 if __name__ == '__main__':

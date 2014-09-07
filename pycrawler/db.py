@@ -1,5 +1,6 @@
 import sqlite3 as lite
-import os, sys
+import os
+import sys
 
 
 class Database:
@@ -7,10 +8,8 @@ class Database:
     DIR_PATH = os.path.dirname(os.path.abspath(__file__))
     DATABASE = '../data/data.db'
 
-
     def __init__(self):
         self._conn = None
-
 
     def db_conn(self):
         conn = None
@@ -29,7 +28,6 @@ class Database:
             sys.exit(1)
         self._conn = conn
         return self._conn
-
 
     def execute(self, sql, params):
         cur = self._conn.cursor()
